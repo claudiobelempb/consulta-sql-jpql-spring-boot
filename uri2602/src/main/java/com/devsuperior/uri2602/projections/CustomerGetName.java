@@ -1,5 +1,5 @@
 package com.devsuperior.uri2602.projections;
 
-public interface CustomerName {
+public interface CustomerGetName {
   String getName();
 }
