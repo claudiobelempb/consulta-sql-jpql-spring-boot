@@ -1,3 +1,4 @@
+# Exercicos feitos no curso Bootcamp Sreing React - professor Nel
 # consulta-sql-jpql-spring-boot
 - URI 2602 - busca simples
 - URI 2611 - join simples
