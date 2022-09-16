@@ -12,7 +12,14 @@ import java.util.List;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-
+  /*
+    SELECT categories.name, SUM(products.amount) sum
+    FROM categories
+    INNER JOIN products
+    ON products.id_categories = categories.id
+    GROUP BY categories.name
+    ORDER BY categories.name
+  */
   @Query(nativeQuery = true, value = "SELECT categories.name, SUM(products.amount) sum FROM categories " +
     "INNER JOIN products ON categories.id =  products.id_categories " +
     "GROUP BY categories.name " + "ORDER BY categories.name ")

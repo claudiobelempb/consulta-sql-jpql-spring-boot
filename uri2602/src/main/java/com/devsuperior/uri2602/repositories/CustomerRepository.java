@@ -12,9 +12,12 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-  @Query(nativeQuery = true, value = "SELECT name " + "FROM customers " + "WHERE UPPER(state) = UPPER(:state)")
-  List<CustomerGetName> customerGetName(String state);
-  @Query("SELECT new com.devsuperior.uri2602.dto.CustomerGetNameDTO(obj.name) " + "FROM Customer obj " + "WHERE UPPER" +
-    "(state) = UPPER(:state)")
-  List<CustomerGetNameDTO> customerGetNameDto(String state);
+  @Query(nativeQuery = true, value = "SELECT name "
+    + "FROM customers "
+    + "WHERE UPPER(state) = UPPER(:state)")
+  List<CustomerGetName> execute1(String state);
+  @Query("SELECT new com.devsuperior.uri2602.dto.CustomerGetNameDTO(obj.name) "
+    + "FROM Customer obj "
+    + "WHERE UPPER(obj.state) = UPPER(:state)")
+  List<CustomerGetNameDTO> execute2(String state);
 }

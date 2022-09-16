@@ -17,7 +17,7 @@ public class Genre {
 	private String description;
 	
 	@OneToMany(mappedBy = "genre")
-	private List<Movie> movies = new ArrayList<>();
+	private final List<Movie> movies = new ArrayList<>();
 	
 	public Genre() {
 	}

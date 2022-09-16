@@ -13,17 +13,17 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
   @Query(
     nativeQuery = true,
-    value = "SELECT m.id, m.name " +
-      "FROM movies AS m " +
-      "INNER JOIN genres AS g " +
-      "ON m.id_genres = g.id " +
-      "WHERE UPPER(g.description) = UPPER(:genreName)"
+    value = "SELECT movies.id, movies.name " +
+      "FROM movies " +
+      "INNER JOIN genres  " +
+      "ON movies.id_genres = genres.id " +
+      "WHERE UPPER(genres.description) = UPPER(:genreName)"
   )
   List<MovieProjection> search1(String genreName);
 
-  @Query("SELECT new com.devsuperior.uri2611.dto.MovieProjectionDTO(m.id, m.name) "
-    + "FROM Movie AS m "
-    + "WHERE UPPER(m.genre.description) = UPPER(:genreName)"
+  @Query("SELECT new com.devsuperior.uri2611.dto.MovieProjectionDTO(obj.id, obj.name) "
+    + "FROM Movie obj "
+    + "WHERE UPPER(obj.genre.description) = UPPER(:genreName)"
   )
   List<MovieProjectionDTO> search2(String genreName);
 }
